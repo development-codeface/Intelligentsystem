@@ -1,0 +1,25 @@
+<div class="article-preview">
+  <app-article-meta [article]="article">
+    <app-favorite-button
+      [article]="article"
+      (toggle)="onToggleFavorite($event)"
+      class="pull-xs-right">
+      {{article.favoritesCount}}
+    </app-favorite-button>
+  </app-article-meta>
+
+  <a [routerLink]="['/article', article.id]" class="preview-link">
+    <h1>{{ article.jobtitle }}</h1>
+    <p>{{ article.jobDescription }}</p>
+    <p>Salary range {{ article.minSalary }} - {{ article.maxSalary }}</p>
+    <p>Number of opening : {{ article.noOfOpenings }}</p>
+    <p>Job type : {{ article.contractType }}  >> Job Period : {{article.contractPeriod}}</p>
+    
+    <ul class="tag-list">
+      <li class="tag-default tag-pill tag-outline"
+        *ngFor="let tag of article.tagList">
+        {{ tag }}
+      </li>
+    </ul>
+  </a>
+</div>

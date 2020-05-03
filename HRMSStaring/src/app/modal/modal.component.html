@@ -1,0 +1,22 @@
+<div id="modal-content-wrapper">
+    
+    <section id="modal-body">
+        <header id="modal-header">
+            <h1 id="modal-title">Question ( {{ questions.length }})</h1>
+        </header>
+        <div *ngIf="questions"></div>
+            <div class="row">
+              <ul>  
+                <li *ngFor="let questionsItem of questions"
+                  class="tag-default tag-pill tag-outline applcant-tag">
+                  Question : {{ questionsItem.question }} ? &nbsp; &nbsp; <br/>
+                  Answer   : {{ questionsItem.answer }} 
+                </li>
+              </ul>
+            </div>
+    </section>
+    <footer id="modal-footer">
+        <button mat-raised-button id="modal-action-button" (click)="closeModal()">Close</button>
+    </footer>
+</div>
+<!-- https://teamtreehouse.com/community/why-is-it-common-practice-to-wrap-everything-within-the-body-tag-with-a-div-tag -->

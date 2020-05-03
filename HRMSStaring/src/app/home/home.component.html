@@ -1,0 +1,111 @@
+<div class="home-page">
+
+  <div class="banner">
+    <div class="container">
+      <h1 class="logo-font">IntelligentRecruitmentHelper</h1>
+      <p>IntelligentRecruitmentHelper will automate candidate jobseeker profile filtering. System enable intelligent system for filtering procedure.</p>
+    </div>
+  </div>
+  
+
+  <div class="container page auth-page" >
+    <div class="row" *appShowAuthed="false">
+      
+            <div class="col-md-6 offset-md-3 col-xs-12">
+              <h1 class="text-xs-center">{{ title }}</h1>
+              <p class="text-xs-center">
+                <a [routerLink]="['/login']" *ngIf="authType == 'register'">Have an account?</a>
+                <a [routerLink]="['/login']" *ngIf="authType == 'login'">Need an account? Please Contact Admin For Account</a>
+              </p>
+              <app-list-errors [errors]="errors"></app-list-errors>
+              <form [formGroup]="authForm" (ngSubmit)="submitForm()">
+                <fieldset [disabled]="isSubmitting">
+                  <fieldset class="form-group">
+                    <input
+                      formControlName="username"
+                      placeholder="Email"
+                      class="form-control form-control-lg"
+                      type="text" />
+                  </fieldset>
+                  <fieldset class="form-group">
+                    <input
+                      formControlName="password"
+                      placeholder="Password"
+                      class="form-control form-control-lg"
+                      type="password" />
+                  </fieldset>
+                  <button class="btn btn-lg btn-primary pull-xs-right" [disabled]="!authForm.valid" type="submit">
+                    {{ title }}
+                  </button>
+                </fieldset>
+              </form>
+            </div>
+
+
+
+
+       
+      <!--
+      <div class="col-md-3">
+        <div class="sidebar">
+          <p>Popular Tags</p>
+
+          <div class="tag-list">
+            <a *ngFor="let tag of tags"
+               (click)="setListTo('all', {tag: tag})"
+               class="tag-default tag-pill">
+               {{ tag }}
+            </a>
+          </div>
+
+          <div [hidden]="tagsLoaded">
+            Loading tags...
+          </div>
+
+          <div [hidden]="!tagsLoaded || tags.length > 0">
+            No tags are here... yet.
+          </div>
+        </div>
+      </div> -->
+
+
+
+
+
+
+
+    </div>
+    <div class="row" *appShowAuthed="true">
+      <div class="col-md-9" >
+         <div class="feed-toggle">
+           
+          <ul class="nav nav-pills outline-active">
+            <li class="nav-item">
+              <a class="nav-link"
+                 [ngClass]="{'active': tabselect === 'feed'}"
+                 (click)="setListTo('feed')">
+                 Your Jobs 
+              </a>
+            </li>
+            <li class="nav-item" *ngIf="noAdminUser">
+              <a class="nav-link"
+                 [ngClass]="{'active': tabselect === 'all' && !listConfig.filters.tag}"
+                 (click)="setListTo('all')">
+                 All Jobs
+              </a>
+            </li>
+            <li class="nav-item" [hidden]="!listConfig.filters.tag">
+              <a class="nav-link active">
+                <i class="ion-pound"></i> {{ listConfig.filters.tag }}
+              </a>
+            </li>
+          </ul>
+        </div> 
+
+        <app-article-list [limit]="10" [config]="listConfig"></app-article-list>
+      </div>
+    </div>
+  </div>
+
+
+</div>
